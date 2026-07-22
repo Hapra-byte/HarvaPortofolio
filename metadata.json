@@ -1,0 +1,6 @@
+{
+  "name": "Portfolio Bagus Harva",
+  "description": "Portofolio interaktif Harva Bagus Pradipta mencakup 3D Animation, Graphic Design, Photography, dan Proyek Video.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
