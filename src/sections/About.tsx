@@ -321,3 +321,122 @@ export function Hero() {
     </section>
   );
 }
+
+/* ---------- About component ---------- */
+export function About() {
+  const { language } = useLanguage();
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+    },
+  };
+
+  return (
+    <section
+      id="about"
+      className="relative py-20 px-6 border-b border-slate-800 bg-gradient-to-b from-slate-900 via-black to-slate-900 overflow-hidden"
+    >
+      {/* Background orbs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl -z-10" />
+
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        className="max-w-4xl mx-auto"
+      >
+        {/* Section heading */}
+        <motion.div variants={itemVariants} className="mb-12 text-center">
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tighter uppercase mb-4">
+            {language === "en" ? "About Me" : "Tentang Saya"}
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto" />
+        </motion.div>
+
+        {/* About content */}
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Left side - Text */}
+          <motion.div variants={itemVariants} className="space-y-6">
+            <p className="text-lg text-slate-300 leading-relaxed">
+              {language === "en"
+                ? "I'm a passionate web developer with a love for creating beautiful, functional digital experiences. With expertise in modern web technologies, I bring ideas to life through clean code and thoughtful design."
+                : "Saya adalah seorang pengembang web yang bersemangat dengan cinta untuk menciptakan pengalaman digital yang indah dan fungsional. Dengan keahlian dalam teknologi web modern, saya mewujudkan ide menjadi kenyataan melalui kode yang bersih dan desain yang penuh pertimbangan."}
+            </p>
+            <p className="text-lg text-slate-300 leading-relaxed">
+              {language === "en"
+                ? "When I'm not coding, you can find me exploring new design trends, contributing to open-source projects, or enjoying the outdoors. I believe in continuous learning and staying updated with the latest industry developments."
+                : "Ketika saya tidak menulis kode, Anda dapat menemukan saya menjelajahi tren desain baru, berkontribusi pada proyek sumber terbuka, atau menikmati alam bebas. Saya percaya pada pembelajaran berkelanjutan dan tetap diperbarui dengan perkembangan industri terbaru."}
+            </p>
+          </motion.div>
+
+          {/* Right side - Stats */}
+          <motion.div variants={itemVariants} className="space-y-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center">
+                  <span className="text-indigo-400 font-bold text-xl">📱</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-1">
+                    {language === "en" ? "Responsive Design" : "Desain Responsif"}
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    {language === "en"
+                      ? "Mobile-first approach to all projects"
+                      : "Pendekatan mobile-first untuk semua proyek"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                  <span className="text-purple-400 font-bold text-xl">⚡</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-1">
+                    {language === "en" ? "Performance" : "Performa"}
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    {language === "en"
+                      ? "Optimized and fast-loading applications"
+                      : "Aplikasi yang dioptimalkan dan cepat dimuat"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center">
+                  <span className="text-pink-400 font-bold text-xl">💡</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-1">
+                    {language === "en" ? "Innovation" : "Inovasi"}
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    {language === "en"
+                      ? "Always exploring new technologies"
+                      : "Selalu mengeksplorasi teknologi baru"}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
