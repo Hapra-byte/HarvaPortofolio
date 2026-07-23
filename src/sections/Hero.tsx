@@ -52,15 +52,15 @@ export function Hero() {
   const word3 = "STORIES";
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden border-b border-stone-800">
-      {/* Floating warm orbs */}
-      <FloatingOrb delay={0} size={600} x="10%" y="20%" color="radial-gradient(circle, rgba(234,88,12,0.08) 0%, transparent 70%)" />
-      <FloatingOrb delay={2} size={500} x="60%" y="10%" color="radial-gradient(circle, rgba(245,158,11,0.07) 0%, transparent 70%)" />
-      <FloatingOrb delay={4} size={400} x="75%" y="60%" color="radial-gradient(circle, rgba(220,38,38,0.05) 0%, transparent 70%)" />
-      <FloatingOrb delay={1} size={350} x="20%" y="70%" color="radial-gradient(circle, rgba(251,146,60,0.06) 0%, transparent 70%)" />
+    <section id="hero" className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden border-b border-slate-800/80">
+      {/* Floating Ocean Orbs */}
+      <FloatingOrb delay={0} size={600} x="10%" y="20%" color="radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%)" /> {/* Sky Blue */}
+      <FloatingOrb delay={2} size={500} x="60%" y="10%" color="radial-gradient(circle, rgba(45,212,191,0.07) 0%, transparent 70%)" /> {/* Teal */}
+      <FloatingOrb delay={4} size={400} x="75%" y="60%" color="radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%)" /> {/* Blue */}
+      <FloatingOrb delay={1} size={350} x="20%" y="70%" color="radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%)" /> {/* Cyan */}
 
-      {/* Central warm glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#ea580c]/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+      {/* Central Ocean Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0ea5e9]/10 rounded-full blur-[120px] pointer-events-none -z-10" />
 
       <motion.div
         variants={containerVariants}
@@ -69,12 +69,12 @@ export function Hero() {
         className="max-w-4xl mx-auto text-center flex flex-col items-center"
       >
         <motion.div variants={itemVariants} className="mb-8">
-          <span className="inline-block px-4 py-1.5 bg-stone-800/50 rounded-full text-[10px] font-bold tracking-widest text-[#f59e0b] uppercase border border-stone-700/50">
+          <span className="inline-block px-4 py-1.5 bg-slate-800/50 rounded-full text-[10px] font-bold tracking-widest text-[#38bdf8] uppercase border border-slate-700/50">
             {profile.profession}
           </span>
         </motion.div>
 
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-[#fafaf9] mb-8 leading-[0.9] uppercase">
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-[#f1f5f9] mb-8 leading-[0.9] uppercase">
           <span className="block overflow-hidden">
             {word1.split("").map((letter, i) => (
               <motion.span
@@ -93,7 +93,7 @@ export function Hero() {
             variants={itemVariants}
             initial="hidden"
             animate="show"
-            className="italic font-serif font-light text-stone-500 lowercase block"
+            className="italic font-serif font-light text-slate-500 lowercase block"
           >
             visual
           </motion.span>
@@ -113,14 +113,14 @@ export function Hero() {
           </span>
         </h1>
 
-        <motion.p variants={itemVariants} className="text-sm md:text-base text-stone-400 mb-10 max-w-lg leading-relaxed font-medium">
+        <motion.p variants={itemVariants} className="text-sm md:text-base text-slate-400 mb-10 max-w-lg leading-relaxed font-medium">
           {language === 'en' ? `Hi, I'm ${profile.name}. ` : `Hai, saya ${profile.name}. `}
           {profile[language].description}
         </motion.p>
         <motion.div variants={itemVariants} className="flex gap-4">
           <motion.a
             href="#portfolio"
-            className="px-8 py-4 bg-gradient-to-r from-[#ea580c] to-[#d97706] text-white text-xs font-bold uppercase tracking-widest rounded-sm shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-300"
+            className="px-8 py-4 bg-gradient-to-r from-[#0ea5e9] to-[#0284c7] text-white text-xs font-bold uppercase tracking-widest rounded-sm shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -128,7 +128,7 @@ export function Hero() {
           </motion.a>
           <motion.a
             href="#contact"
-            className="px-8 py-4 border border-stone-700 text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-stone-800 text-[#fafaf9] transition-all duration-300"
+            className="px-8 py-4 border border-slate-700 text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-slate-800 text-[#f1f5f9] transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -139,4 +139,3 @@ export function Hero() {
     </section>
   );
 }
- 
