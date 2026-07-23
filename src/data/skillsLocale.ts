@@ -5,14 +5,14 @@ export const skillsLocale = {
     description: 'A combination of professional editing software and deep understanding of visual design.',
     hardSkills: 'Hard Skills',
     softSkills: 'Soft Skills',
-    yearsExp: 'Years Exp',
+    yearsExp: 'Years of Experience',
   },
   id: {
     technicalMastery: 'Penguasaan Teknis',
     coreSkills: 'Keahlian Inti',
     description: 'Kombinasi antara perangkat lunak pengeditan profesional dan pemahaman desain visual yang mendalam.',
-    hardSkills: 'Hard Skills',
-    softSkills: 'Soft Skills',
-    yearsExp: 'Tahun Exp',
+    hardSkills: 'Keterampilan Teknis',
+    softSkills: 'Keterampilan Lunak',
+    yearsExp: 'Tahun Pengalaman',
   },
 } as const;
