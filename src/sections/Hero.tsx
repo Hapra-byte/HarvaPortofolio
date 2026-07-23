@@ -52,8 +52,9 @@ export function Hero() {
   const word3 = "STORIES";
 
   return (
-    {/* Mengubah background menjadi sangat gelap (cyberpunk base) */}
     <section id="hero" className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden bg-[#0f111a] border-b border-[#2d2449]">
+      {/* Background menjadi sangat gelap (cyberpunk base) */}
+      
       {/* Floating Orbs - Warna Ungu/Fuchsia/Magenta Neon */}
       <FloatingOrb delay={0} size={600} x="10%" y="20%" color="radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)" />
       <FloatingOrb delay={2} size={500} x="60%" y="10%" color="radial-gradient(circle, rgba(192,38,211,0.12) 0%, transparent 70%)" />
