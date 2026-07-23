@@ -52,30 +52,32 @@ export function Hero() {
   const word3 = "STORIES";
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden border-b border-slate-800/80">
-      {/* Floating Ocean Orbs */}
-      <FloatingOrb delay={0} size={600} x="10%" y="20%" color="radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%)" /> {/* Sky Blue */}
-      <FloatingOrb delay={2} size={500} x="60%" y="10%" color="radial-gradient(circle, rgba(45,212,191,0.07) 0%, transparent 70%)" /> {/* Teal */}
-      <FloatingOrb delay={4} size={400} x="75%" y="60%" color="radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%)" /> {/* Blue */}
-      <FloatingOrb delay={1} size={350} x="20%" y="70%" color="radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%)" /> {/* Cyan */}
+    {/* Mengubah background menjadi sangat gelap (cyberpunk base) */}
+    <section id="hero" className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden bg-[#0f111a] border-b border-[#2d2449]">
+      {/* Floating Orbs - Warna Ungu/Fuchsia/Magenta Neon */}
+      <FloatingOrb delay={0} size={600} x="10%" y="20%" color="radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)" />
+      <FloatingOrb delay={2} size={500} x="60%" y="10%" color="radial-gradient(circle, rgba(192,38,211,0.12) 0%, transparent 70%)" />
+      <FloatingOrb delay={4} size={400} x="75%" y="60%" color="radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)" />
+      <FloatingOrb delay={1} size={350} x="20%" y="70%" color="radial-gradient(circle, rgba(217,70,239,0.1) 0%, transparent 70%)" />
 
-      {/* Central Ocean Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0ea5e9]/10 rounded-full blur-[120px] pointer-events-none -z-10" />
+      {/* Central Glow - Deep Purple */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#9333ea]/15 rounded-full blur-[120px] pointer-events-none -z-10" />
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="max-w-4xl mx-auto text-center flex flex-col items-center"
+        className="max-w-4xl mx-auto text-center flex flex-col items-center z-10 relative"
       >
-        <motion.div variants={itemVariants} className="mb-8">
-          <span className="inline-block px-4 py-1.5 bg-slate-800/50 rounded-full text-[10px] font-bold tracking-widest text-[#38bdf8] uppercase border border-slate-700/50">
+        <motion.div variants={itemVariants} className="mb-10">
+          {/* Badge dengan outline cyan menyala */}
+          <span className="inline-block px-5 py-2 rounded-full text-xs font-bold tracking-widest text-[#22d3ee] uppercase border border-[#22d3ee] shadow-[0_0_12px_rgba(34,211,238,0.3)] bg-[#0f111a]/50 backdrop-blur-sm">
             {profile.profession}
           </span>
         </motion.div>
 
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-[#f1f5f9] mb-8 leading-[0.9] uppercase">
-          <span className="block overflow-hidden">
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter text-[#f8fafc] mb-8 leading-[0.85] uppercase">
+          <span className="block overflow-hidden relative z-0">
             {word1.split("").map((letter, i) => (
               <motion.span
                 key={i}
@@ -89,15 +91,18 @@ export function Hero() {
               </motion.span>
             ))}
           </span>
+          
+          {/* Teks "visual" diperbesar, ungu neon, dan margin negatif untuk overlap */}
           <motion.span
             variants={itemVariants}
             initial="hidden"
             animate="show"
-            className="italic font-serif font-light text-slate-500 lowercase block"
+            className="italic font-serif font-bold text-[#d946ef] lowercase block text-7xl md:text-[110px] lg:text-[140px] -mt-6 -mb-6 md:-mt-12 md:-mb-12 relative z-10 [text-shadow:_0_4px_24px_rgba(217,70,239,0.5)]"
           >
             visual
           </motion.span>
-          <span className="block overflow-hidden">
+
+          <span className="block overflow-hidden relative z-0">
             {word3.split("").map((letter, i) => (
               <motion.span
                 key={i}
@@ -113,22 +118,26 @@ export function Hero() {
           </span>
         </h1>
 
-        <motion.p variants={itemVariants} className="text-sm md:text-base text-slate-400 mb-10 max-w-lg leading-relaxed font-medium">
+        <motion.p variants={itemVariants} className="text-sm md:text-base text-gray-300 mb-10 max-w-lg leading-relaxed font-medium mt-4">
           {language === 'en' ? `Hi, I'm ${profile.name}. ` : `Hai, saya ${profile.name}. `}
           {profile[language].description}
         </motion.p>
-        <motion.div variants={itemVariants} className="flex gap-4">
+        
+        <motion.div variants={itemVariants} className="flex gap-5">
+          {/* Tombol Gradient Fuchsia ke Cyan */}
           <motion.a
             href="#portfolio"
-            className="px-8 py-4 bg-gradient-to-r from-[#0ea5e9] to-[#0284c7] text-white text-xs font-bold uppercase tracking-widest rounded-sm shadow-lg shadow-sky-500/20 hover:shadow-sky-500/40 transition-all duration-300"
+            className="px-8 py-4 bg-gradient-to-r from-[#c026d3] to-[#06b6d4] text-white text-xs font-bold uppercase tracking-widest rounded-[4px] shadow-[0_0_20px_rgba(192,38,211,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
             {language === 'en' ? 'View Portfolio' : 'Lihat Portfolio'}
           </motion.a>
+          
+          {/* Tombol Outline Putih */}
           <motion.a
             href="#contact"
-            className="px-8 py-4 border border-slate-700 text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-slate-800 text-[#f1f5f9] transition-all duration-300"
+            className="px-8 py-4 border-2 border-white text-xs font-bold uppercase tracking-widest rounded-[4px] hover:bg-white/10 text-white transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
