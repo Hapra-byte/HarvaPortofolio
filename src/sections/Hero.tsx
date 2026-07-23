@@ -5,7 +5,7 @@ import { useLanguage } from "@/src/context/LanguageContext";
 
 export function Hero() {
   const { language } = useLanguage();
-  
+
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -21,6 +21,10 @@ export function Hero() {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden border-b border-slate-800">
+      
+      {/* Floating Orb */}
+      <div className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-tr from-purple-400 via-pink-500 to-yellow-400 rounded-full opacity-70 animate-float z-0" />
+
       {/* Background visual element */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#6366F1]/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
@@ -53,6 +57,21 @@ export function Hero() {
           </a>
         </motion.div>
       </motion.div>
+
+      {/* Add keyframes for floating animation */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 }
