@@ -7,6 +7,7 @@ import { CustomCursor } from '@/src/components/CustomCursor';
 import { Navbar } from '@/src/components/Navbar';
 import { Footer } from '@/src/components/Footer';
 import { Hero } from '@/src/sections/Hero';
+import { About } from '@/src/sections/About';
 import { Skills } from '@/src/sections/Skills';
 import { Portfolio } from '@/src/sections/Portfolio';
 import { Experience } from '@/src/sections/Experience';
@@ -24,6 +25,7 @@ export default function App() {
           
           <main>
             <Hero />
+            <About />
             <Skills />
             <Portfolio />
             <Experience />
@@ -36,4 +38,3 @@ export default function App() {
     </LanguageProvider>
   );
 }
-
