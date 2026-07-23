@@ -101,6 +101,9 @@ export function Hero() {
           </a>
         </motion.div>
       </motion.div>
+
+      {/* Efek gradasi halus di bagian bawah */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-[#0f1423] pointer-events-none z-20" />
     </section>
   );
 }
