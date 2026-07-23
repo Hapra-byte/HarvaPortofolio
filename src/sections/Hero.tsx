@@ -32,7 +32,7 @@ export function Hero() {
   const word3 = "STORIES";
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden border-b border-slate-800 bg-[#0f1423]">
+    <section id="hero" className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden bg-[#0f1423]">
       {/* Background visual element */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#6366F1]/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
@@ -64,7 +64,6 @@ export function Hero() {
             ))}
           </span>
           
-          {/* Menghapus margin negatif (-mt-6 -mb-6 md:-mt-12 md:-mb-12) di sini */}
           <motion.span 
             variants={itemVariants} 
             className="italic font-serif font-light text-slate-400 lowercase block text-7xl md:text-[110px] lg:text-[140px] relative z-10"
