@@ -17,7 +17,7 @@ export function PortfolioHeader({ language }: PortfolioHeaderProps) {
       </div>
 
       <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4">
-        {language === "en" ? "All My Works" : "Semua Karya Saya"}
+        {language === "en" ? "ALL MY WORKS" : "SEMUA KARYA SAYA"}
       </h2>
 
       <p className="text-slate-400 max-w-2xl mx-auto text-sm mb-8 transition-colors hover:text-slate-300 duration-300">
