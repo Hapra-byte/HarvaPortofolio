@@ -29,4 +29,31 @@ export function HardSkillBar({ name, progress, index }: HardSkillBarProps) {
           {name}
         </span>
         <span
-          className="text-[#6366F1] text-xs font-mono
+          className="text-[#6366F1] text-xs font-mono group-hover/skill:text-indigo-400 transition-colors"
+          aria-label={`${clampedProgress} percent`}
+        >
+          {clampedProgress}%
+        </span>
+      </div>
+      <div
+        className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden border border-slate-700/50"
+        role="progressbar"
+        aria-valuenow={clampedProgress}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label={`${name} proficiency`}
+      >
+        <motion.div
+          className="h-full bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#A78BFA] rounded-full shadow-lg shadow-indigo-500/50"
+          initial={{ width: 0 }}
+          animate={isInView ? { width: `${clampedProgress}%` } : { width: 0 }}
+          transition={{
+            duration: ANIMATION_DURATION,
+            delay: PROGRESS_DELAY_OFFSET + index * ANIMATION_STAGGER,
+            ease: "easeOut",
+          }}
+        />
+      </div>
+    </motion.div>
+  );
+}
