@@ -1,29 +1,64 @@
 import { motion } from "motion/react";
 
-interface PortfolioHeaderProps {
-  language: "en" | "id";
+interface HardSkillBarProps {
+  name: string;
+  progress: number;
+  index: number;
 }
 
-export function PortfolioHeader({ language }: PortfolioHeaderProps) {
+const ANIMATION_STAGGER = 0.05;
+const ANIMATION_DURATION = 1.2;
+const PROGRESS_DELAY_OFFSET = 0.3;
+
+export function HardSkillBar({ name, progress, index }: HardSkillBarProps) {
+  // Clamp progress between 0 and 100 to prevent layout breakage
+  const clampedProgress = Math.min(Math.max(progress, 0), 100);
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="mb-12 text-center"
+    <motion.div 
+      key={name}
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ 
+        duration: 0.5, 
+        ease: [0.16, 1, 0.3, 1], 
+        delay: 0.1 + (index * ANIMATION_STAGGER) 
+      }}
+      className="group/skill"
     >
-      <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">
-        Portfolio
+      <div className="flex justify-between mb-2">
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-300 group-hover/skill:text-slate-100 transition-colors">
+          {name}
+        </span>
+        <span 
+          className="text-[#6366F1] text-xs font-mono group-hover/skill:text-indigo-400 transition-colors"
+          aria-label={`${clampedProgress} percent`}
+        >
+          {clampedProgress}%
+        </span>
       </div>
-      <h2 className="...">
-  {language === "en" ? "All My Works" : "Semua Karya Saya"}
-</h2>
-    
-      <p className="text-slate-400 max-w-2xl mx-auto text-sm mb-8 transition-colors hover:text-slate-300 duration-300">
-        {language === "en"
-          ? "A collection of selected works including 3D Animation, Graphic Design, Photography, and Personal Video Projects."
-          : "Kumpulan karya pilihan mencakup Animasi 3D, Desain Grafis, Fotografi, serta Proyek Video Personal."}
-      </p>
+
+      <div 
+        className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden border border-slate-700/50 relative"
+        role="progressbar"
+        aria-valuenow={clampedProgress}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label={`${name} proficiency`}
+      >
+        <motion.div 
+          className="h-full bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#A78BFA] rounded-full drop-shadow-[0_0_8px_rgba(99,102,241,0.6)]"
+          initial={{ width: "0%" }}
+          whileInView={{ width: `${clampedProgress}%` }}
+          viewport={{ once: true, margin: "-20px" }}
+          transition={{ 
+            duration: ANIMATION_DURATION, 
+            delay: PROGRESS_DELAY_OFFSET + (index * ANIMATION_STAGGER), 
+            ease: "easeOut" 
+          }}
+        />
+      </div>
     </motion.div>
   );
 }
