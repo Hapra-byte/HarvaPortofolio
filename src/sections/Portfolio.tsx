@@ -9,7 +9,6 @@ import { EnhancedProjectCard } from "@/src/components/portfolio/EnhancedProjectC
 import { ProjectModal } from "@/src/components/portfolio/ProjectModal";
 import { LightboxModal } from "@/src/components/portfolio/LightboxModal";
 import { FilterTabs } from "@/src/components/portfolio/FilterTabs";
-import { PortfolioStats } from "@/src/components/portfolio/PortfolioStats";
 import { useProjectFilter } from "@/src/hooks/useProjectFilter";
 import "@/src/components/portfolio/portfolio-animations.css";
 
@@ -98,13 +97,6 @@ export function Portfolio() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <PortfolioHeader language={language as "en" | "id"} />
-
-        {/* Stats */}
-        <PortfolioStats
-          language={language as "en" | "id"}
-          projectCount={projects.length}
-          categoryCount={categories.length}
-        />
 
         {/* Filter Tabs */}
         <FilterTabs
