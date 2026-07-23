@@ -2,7 +2,11 @@ import { motion } from "motion/react";
 import { profile } from "@/src/data/profile";
 import { useLanguage } from "@/src/context/LanguageContext";
 
-/* -------------------- Optimized floating orb (CSS) -------------------- */
+/* ---------- Helper ---------- */
+const rand = (min: number, max: number) =>
+  Math.floor(Math.random() * (max - min + 1)) + min;
+
+/* ---------- Optimized floating orb (pure CSS) ---------- */
 function FloatingOrb({
   delay,
   size,
@@ -31,10 +35,15 @@ function FloatingOrb({
   );
 }
 
-/* -------------------------- Hero component -------------------------- */
+/* ---------- Hero component ---------- */
 export function Hero() {
   const { language } = useLanguage();
 
+  /* ----- Text ----- */
+  const word1 = "CRAFTING";
+  const word3 = "STORIES";
+
+  /* ----- Variants ----- */
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -66,15 +75,51 @@ export function Hero() {
     }),
   };
 
-  const word1 = "CRAFTING";
-  const word3 = "STORIES";
+  /* ----- Organic shapes ----- */
+  const shapes = [
+    {
+      className:
+        "w-72 h-72 bg-pink-400/20 rounded-full blur-xl opacity-50 animate-float",
+      style: {
+        top: "-12rem",
+        left: "-8rem",
+        animationDelay: `${rand(0, 4)}s`,
+      },
+    },
+    {
+      className:
+        "w-28 h-28 bg-indigo-400/20 rounded-md blur-xl opacity-40 animate-rotate",
+      style: {
+        top: "20%",
+        right: "-3rem",
+        animationDelay: `${rand(0, 4)}s`,
+      },
+    },
+    {
+      className:
+        "w-40 h-40 bg-emerald-400/20 rounded-md blur-xl opacity-30 animate-pulseScale rotate-45",
+      style: {
+        bottom: "-6rem",
+        left: "10%",
+        animationDelay: `${rand(0, 4)}s`,
+      },
+    },
+    {
+      className:
+        "w-96 h-96 bg-yellow-400/15 opacity-20 blur-3xl animate-floatSlow",
+      style: {
+        bottom: "-12rem",
+        right: "-10rem",
+        clipPath:
+          "polygon(50% 0%, 90% 30%, 80% 80%, 30% 90%, 0% 50%, 20% 20%)",
+        animationDelay: `${rand(0, 4)}s`,
+      },
+    },
+  ];
 
   return (
-    <section
-      id="hero"
-      className="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden border-b border-stone-800 bg-black"
-    >
-      {/* ----- Optimized orbs (CSS) ----- */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden border-b border-slate-800 bg-gradient-to-b from-slate-900 via-black to-slate-900 pt-20 px-6">
+      {/* ----- Orbs (CSS‑animated) ----- */}
       <FloatingOrb
         delay={0}
         size={600}
@@ -107,22 +152,31 @@ export function Hero() {
       {/* ----- Central warm glow ----- */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#ea580c]/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
-      {/* ----- Content ----- */}
+      {/* ----- Organic background shapes ----- */}
+      {shapes.map((s, i) => (
+        <div
+          key={i}
+          className={s.className + " absolute pointer-events-none"}
+          style={s.style}
+        />
+      ))}
+
+      {/* ----- Main content ----- */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="max-w-4xl mx-auto text-center flex flex-col items-center"
+        className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6 relative z-10"
       >
         {/* Profession badge */}
         <motion.div variants={itemVariants} className="mb-8">
-          <span className="inline-block px-4 py-1.5 bg-stone-800/50 rounded-full text-[10px] font-bold tracking-widest text-[#f59e0b] uppercase border border-stone-700/50">
+          <span className="inline-block px-4 py-1.5 bg-slate-800/50 rounded-full text-[10px] font-bold tracking-widest text-[#8B5CF6] uppercase border border-slate-700/50">
             {profile.profession}
           </span>
         </motion.div>
 
-        {/* ----- Heading – same style/animation as original ----- */}
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-[#fafaf9] mb-8 leading-[0.9] uppercase">
+        {/* Heading – per‑letter animation for CRAFTING & STORIES */}
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] uppercase mb-4">
           {/* CRAFTING */}
           <span className="block overflow-hidden">
             {word1.split("").map((letter, i) => (
@@ -139,12 +193,12 @@ export function Hero() {
             ))}
           </span>
 
-          {/* visual (italic, lighter) */}
+          {/* visual */}
           <motion.span
             variants={itemVariants}
             initial="hidden"
             animate="show"
-            className="italic font-serif font-light text-stone-500 lowercase block"
+            className="italic font-serif font-light text-slate-500 lowercase block"
           >
             visual
           </motion.span>
@@ -167,7 +221,7 @@ export function Hero() {
         </h1>
 
         {/* Subtitle */}
-        <motion.p variants={itemVariants} className="text-sm md:text-base text-stone-400 mb-10 max-w-lg leading-relaxed font-medium">
+        <motion.p variants={itemVariants} className="text-sm md:text-base text-slate-400 max-w-lg leading-relaxed font-medium">
           {language === "en"
             ? `Hi, I'm ${profile.name}. `
             : `Hai, saya ${profile.name}. `}
@@ -176,26 +230,22 @@ export function Hero() {
 
         {/* Buttons */}
         <motion.div variants={itemVariants} className="flex gap-4">
-          <motion.a
+          <a
             href="#portfolio"
-            className="px-8 py-4 bg-gradient-to-r from-[#ea580c] to-[#d97706] text-white text-xs font-bold uppercase tracking-widest rounded-sm shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transition-all duration-300"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.97 }}
+            className="px-8 py-4 bg-[#6366F1] text-white text-xs font-bold uppercase tracking-widest rounded-sm shadow-lg shadow-indigo-500/20 hover:bg-[#5254D8] transition-colors"
           >
             {language === "en" ? "View Portfolio" : "Lihat Portfolio"}
-          </motion.a>
-          <motion.a
+          </a>
+          <a
             href="#contact"
-            className="px-8 py-4 border border-stone-700 text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-stone-800 text-[#fafaf9] transition-all duration-300"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.97 }}
+            className="px-8 py-4 border border-slate-700 text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-slate-800 text-[#F8FAFC] transition-colors"
           >
             {language === "en" ? "Contact Me" : "Hubungi Saya"}
-          </motion.a>
+          </a>
         </motion.div>
       </motion.div>
 
-      {/* ----- CSS for orb animation (lighter than Motion) ----- */}
+      {/* ----- CSS keyframes (orbs & float) ----- */}
       <style jsx global>{`
         @keyframes orbMove {
           0%,
@@ -218,6 +268,54 @@ export function Hero() {
         }
         .animate-orb {
           animation: orbMove 12s ease-in-out infinite;
+        }
+
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+        @keyframes floatSlow {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        @keyframes rotate {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        @keyframes pulseScale {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.08);
+          }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        .animate-floatSlow {
+          animation: floatSlow 8s ease-in-out infinite;
+        }
+        .animate-rotate {
+          animation: rotate 12s linear infinite;
+        }
+        .animate-pulseScale {
+          animation: pulseScale 4s ease-in-out infinite;
         }
       `}</style>
     </section>
